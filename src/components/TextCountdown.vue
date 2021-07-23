@@ -1,13 +1,14 @@
 <template>
   <div class="container flip-clock">
     <p>
-      Show in {{days}} Tagen, {{hours}} Stunden, {{minutes}} Minuten und {{seconds}} Sekunden
-  </p>
+      Online-Vernissage startet in {{ days }} Tagen, {{ hours }} Stunden, {{ minutes }}
+      Minuten und {{ seconds }} Sekunden
+    </p>
   </div>
 </template>
 
 <script>
-  
+
 import uuidv4 from 'uuid/v4'
 
 export default {
@@ -42,18 +43,18 @@ export default {
     labels: {
       type: Object,
       required: false,
-      default: function() {
+      default: function () {
         return {
           days: 'Days',
           hours: 'Hours',
           minutes: 'Minutes',
           seconds: 'Seconds',
-        };
+        }
       },
     },
   },
   data() {
-    const uuid = uuidv4();
+    const uuid = uuidv4()
     return {
       now: Math.trunc(new Date().getTime() / 1000),
       date: null,
@@ -90,52 +91,52 @@ export default {
           show: this.showSeconds,
         },
       ],
-    };
+    }
   },
   created() {
     if (!this.deadline) {
-      throw new Error("Missing props 'deadline'");
+      throw new Error("Missing props 'deadline'")
     }
-    const endTime = this.deadline;
-    this.date = Math.trunc(Date.parse(endTime.replace(/-/g, '/')) / 1000);
+    const endTime = this.deadline
+    this.date = Math.trunc(Date.parse(endTime.replace(/-/g, '/')) / 1000)
     if (!this.date) {
-      throw new Error("Invalid props value, correct the 'deadline'");
+      throw new Error("Invalid props value, correct the 'deadline'")
     }
     this.interval = setInterval(() => {
-      this.now = Math.trunc(new Date().getTime() / 1000);
-    }, 1000);
+      this.now = Math.trunc(new Date().getTime() / 1000)
+    }, 1000)
   },
   mounted() {
     if (this.diff !== 0) {
-      this.show = true;
+      this.show = true
     }
   },
   computed: {
     seconds() {
-      return Math.trunc(this.diff) % 60;
+      return Math.trunc(this.diff) % 60
     },
     minutes() {
-      return Math.trunc(this.diff / 60) % 60;
+      return Math.trunc(this.diff / 60) % 60
     },
     hours() {
-      return Math.trunc(this.diff / 60 / 60) % 24;
+      return Math.trunc(this.diff / 60 / 60) % 24
     },
     days() {
-      return Math.trunc(this.diff / 60 / 60 / 24);
+      return Math.trunc(this.diff / 60 / 60 / 24)
     },
   },
   watch: {
-    deadline: function(newVal, oldVal) {
-      const endTime = this.deadline;
-      this.date = Math.trunc(Date.parse(endTime.replace(/-/g, '/')) / 1000);
+    deadline: function (newVal, oldVal) {
+      const endTime = this.deadline
+      this.date = Math.trunc(Date.parse(endTime.replace(/-/g, '/')) / 1000)
       if (!this.date) {
-        throw new Error("Invalid props value, correct the 'deadline'");
+        throw new Error("Invalid props value, correct the 'deadline'")
       }
     },
     now(value) {
-      this.diff = this.date - this.now;
+      this.diff = this.date - this.now
       if (this.diff <= 0 || this.stop) {
-        this.diff = 0;
+        this.diff = 0
         //this.updateTime(3, 0);
       } else {
         //this.updateAllCards();
@@ -143,7 +144,7 @@ export default {
     },
     diff(value) {
       if (value === 0) {
-        this.$emit('timeElapsed');
+        this.$emit('timeElapsed')
         //this.updateAllCards();
       }
     },
@@ -151,24 +152,25 @@ export default {
   filters: {
     twoDigits(value) {
       if (value.toString().length <= 1) {
-        return '0' + value.toString();
+        return '0' + value.toString()
       }
-      return value.toString();
+      return value.toString()
     },
   },
   methods: {
+
   },
   beforeDestroy() {
     if (window['cancelAnimationFrame']) {
-      cancelAnimationFrame(this.frame);
+      cancelAnimationFrame(this.frame)
     }
   },
   destroyed() {
-    clearInterval(this.interval);
+    clearInterval(this.interval)
   },
-};
+}
 </script>
 
-<style scoped lang="less">
-  
+<style lang="less" scoped>
+
 </style>

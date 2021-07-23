@@ -15,9 +15,15 @@ export default defineConfig({
     outDir: "build"
   },
   server: {
+    host: 'localhost',
     strictPort: true,
-    hmr: {
-      port: 443 // Run the websocket server on the SSL port
-    }
+    hmr: false
+    /*hmr: {
+      host: 'localhost',
+      port: 3003, //443 Run the websocket server on the SSL port
+      https: false,
+      protocol: 'ws',
+      timeout: 1000000,
+    }*/
   }
 })

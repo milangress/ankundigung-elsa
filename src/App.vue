@@ -2,7 +2,7 @@
 .main
   .top-bar
     span.countdown
-      text-countdown(deadline="2021-10-16 12:00:00")
+      text-countdown(deadline="2021-10-16 12:00:00" :lang="currentLang")
         //flip-countdown(deadline="2021-10-16 12:00:00")
         //vue-countdown(:time="5 * 24 * 60 * 60 * 1000" v-slot="{ days, hours, minutes, seconds }"> Time Remaining：{{ days }} days, {{ hours }} hours, {{ minutes }} minutes, {{ seconds }} seconds.)
     span.date
@@ -17,7 +17,11 @@
       .rotated
         h1(v-html="mainAlt")
         p(v-html="secondaryAlt")
-
+  .bottom-bar
+    span.countdown
+      text-countdown(deadline="2021-10-16 12:00:00" :lang="altLang")
+    span.date
+      span(v-html="dateAlt")
 
 </template>
 
@@ -99,9 +103,12 @@
 h1 {
   font-weight: normal;
 }
-.top-bar {
+.top-bar, .bottom-bar {
   display: flex;
   justify-content: space-between;
+}
+.bottom-bar {
+  transform: rotate(180deg);
 }
 main {
   display: flex;

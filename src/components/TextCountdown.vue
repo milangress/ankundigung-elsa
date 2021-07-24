@@ -1,8 +1,12 @@
 <template>
   <span class="container flip-clock">
-    <span>
+    <span v-if="lang==='de'">
       Online-Vernissage startet in {{ days }} Tagen, {{ hours }} Stunden, {{ minutes }}
       Minuten und {{ seconds }} Sekunden
+    </span>
+    <span v-if="lang==='ru'">
+      Онлайн-вернисаж начнется через {{ days }} дня, {{ hours }} часов, {{ minutes }}
+      минут и {{ seconds }} секунд.
     </span>
   </span>
 </template>
@@ -14,6 +18,10 @@ import uuidv4 from 'uuid/v4'
 export default {
   name: 'flipCountdown',
   props: {
+    lang: {
+      type: String,
+      default: 'de',
+    },
     deadline: {
       type: String,
     },

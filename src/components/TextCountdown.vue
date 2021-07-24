@@ -1,10 +1,10 @@
 <template>
-  <div class="container flip-clock">
-    <p>
+  <span class="container flip-clock">
+    <span>
       Online-Vernissage startet in {{ days }} Tagen, {{ hours }} Stunden, {{ minutes }}
       Minuten und {{ seconds }} Sekunden
-    </p>
-  </div>
+    </span>
+  </span>
 </template>
 
 <script>

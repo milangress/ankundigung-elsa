@@ -112,6 +112,7 @@ h1 {
 }
 main {
   display: flex;
+  justify-content: space-between;
 }
 .button {
   display: inline-block;

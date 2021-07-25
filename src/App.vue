@@ -93,7 +93,7 @@
 <style>
 @font-face {
   font-family: testfont;
-  src: url(https://cdn.glitch.com/27980582-17ad-4d9c-96fc-33c1aac77c69%2Fgt.woff2?v=1627207369399);
+  src: url(https://cdn.glitch.com/27980582-17ad-4d9c-96fc-33c1aac77c69%2FGT-America-Condensed-Regular--trial-subset.woff2?v=1627049070089);
 }
   body {
     font-family: testfont,sans-serif;
@@ -112,7 +112,6 @@ h1 {
 }
 main {
   display: flex;
-  justify-content: space-between;
 }
 .button {
   display: inline-block;
